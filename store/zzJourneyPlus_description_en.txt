@@ -10,8 +10,6 @@ You can put remaining distance and distance to next point together in one field.
 Built with the TitilliumWeb font for better readability on the move.
 The successor to zzTravel, rebuilt so the numbers keep going even with no course or when you leave the course.
 
-- Find it useful? You can support development here: https://paypal.me/zzungga
-
 - Everything is calculated on the device, no phone needed.
   Distance to next point and course-based remaining distance need course navigation on the device.
 
@@ -68,11 +66,14 @@ v1.0.5
 - In wide fields the unit and label moved above the number, leaving room for bigger digits
 - Main number aligned with its unit, right margin tightened in small fields
 - Flag icon and top value sized to match the other zz fields
+v1.0.2 - 1.0.4
+- Icon and font sizes adjusted
+v1.0.1
+- Defaults changed so distance and elapsed time show right after install
+- Remaining distance and time buffer calculated more reliably
+- Choose the ETA basis added (including stops / moving average)
 v1.0.0
 - First release (successor to zzTravel)
-- Shows distance and elapsed time out of the box (fixes distance showing 0 in the old app)
 - REM and CP labels for remaining distance and next point in small fields
-- Choose the ETA basis (average including stops / moving average)
-- Remaining distance stays steady through GPS drift on course and continues when you leave the course
 - Time buffer against the cutoff from progress along the course, with a warning color when behind
 - Font size adjusts to the field width
