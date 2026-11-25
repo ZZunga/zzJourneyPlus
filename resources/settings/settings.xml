@@ -1,0 +1,71 @@
+<settings>
+    <setting propertyKey="@Properties.appVersion" title="@Strings.VersionTitle">
+        <settingConfig type="alphaNumeric" readonly="true"/>
+    </setting>
+    <setting propertyKey="@Properties.mainMode" title="@Strings.MainTitle">
+        <settingConfig type="list">
+            <listEntry value="0">@Strings.Main0</listEntry>
+            <listEntry value="1">@Strings.Main1</listEntry>
+            <listEntry value="2">@Strings.Main2</listEntry>
+            <listEntry value="3">@Strings.Main3</listEntry>
+            <listEntry value="4">@Strings.Main4</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.subMode" title="@Strings.SubTitle">
+        <settingConfig type="list">
+            <listEntry value="0">@Strings.Sub0</listEntry>
+            <listEntry value="1">@Strings.Sub1</listEntry>
+            <listEntry value="2">@Strings.Sub2</listEntry>
+            <listEntry value="3">@Strings.Sub3</listEntry>
+            <listEntry value="4">@Strings.Sub4</listEntry>
+            <listEntry value="5">@Strings.Sub5</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.etaMode" title="@Strings.EtaTitle">
+        <settingConfig type="list">
+            <listEntry value="0">@Strings.Eta0</listEntry>
+            <listEntry value="1">@Strings.Eta1</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.targetDistance" title="@Strings.TargetTitle">
+        <settingConfig type="numeric" min="0" max="5000"/>
+    </setting>
+    <setting propertyKey="@Properties.limitSpeed" title="@Strings.LimitTitle">
+        <settingConfig type="numeric" min="0" max="60"/>
+    </setting>
+    <setting propertyKey="@Properties.dayHighColor" title="@Strings.DayWarnTitle">
+        <settingConfig type="list">
+            <listEntry value="0">@Strings.Color0</listEntry>
+            <listEntry value="1">@Strings.Color1</listEntry>
+            <listEntry value="2">@Strings.Color2</listEntry>
+            <listEntry value="3">@Strings.Color3</listEntry>
+            <listEntry value="4">@Strings.Color4</listEntry>
+            <listEntry value="5">@Strings.Color5</listEntry>
+            <listEntry value="6">@Strings.Color6</listEntry>
+            <listEntry value="7">@Strings.Color7</listEntry>
+            <listEntry value="8">@Strings.Color8</listEntry>
+            <listEntry value="9">@Strings.Color9</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.nightHighColor" title="@Strings.NightWarnTitle">
+        <settingConfig type="list">
+            <listEntry value="0">@Strings.Color0</listEntry>
+            <listEntry value="1">@Strings.Color1</listEntry>
+            <listEntry value="2">@Strings.Color2</listEntry>
+            <listEntry value="3">@Strings.Color3</listEntry>
+            <listEntry value="4">@Strings.Color4</listEntry>
+            <listEntry value="5">@Strings.Color5</listEntry>
+            <listEntry value="6">@Strings.Color6</listEntry>
+            <listEntry value="7">@Strings.Color7</listEntry>
+            <listEntry value="8">@Strings.Color8</listEntry>
+            <listEntry value="9">@Strings.Color9</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.bgMode" title="@Strings.BgModeTitle">
+        <settingConfig type="list">
+            <listEntry value="0">@Strings.BgAuto</listEntry>
+            <listEntry value="1">@Strings.BgPlain</listEntry>
+            <listEntry value="2">@Strings.BgClear</listEntry>
+        </settingConfig>
+    </setting>
+</settings>

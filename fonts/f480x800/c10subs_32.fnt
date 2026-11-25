@@ -1,0 +1,19 @@
+info face="TitilliumWeb" size=46 bold=1 italic=0 charset="" unicode=1 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=1,1 outline=0
+common lineHeight=44 base=34 scaleW=404 scaleH=48 pages=1 packed=0 alphaChnl=1 redChnl=0 greenChnl=0 blueChnl=0
+page id=0 file="c10subs_32.png"
+chars count=15
+char id=48 x=2 y=2 width=26 height=33 xoffset=0 yoffset=2 xadvance=26 page=0 chnl=15
+char id=49 x=30 y=2 width=26 height=31 xoffset=0 yoffset=3 xadvance=26 page=0 chnl=15
+char id=50 x=58 y=2 width=26 height=32 xoffset=0 yoffset=2 xadvance=26 page=0 chnl=15
+char id=51 x=86 y=2 width=26 height=33 xoffset=0 yoffset=2 xadvance=26 page=0 chnl=15
+char id=52 x=114 y=2 width=26 height=31 xoffset=0 yoffset=3 xadvance=26 page=0 chnl=15
+char id=53 x=142 y=2 width=26 height=32 xoffset=0 yoffset=3 xadvance=26 page=0 chnl=15
+char id=54 x=170 y=2 width=26 height=33 xoffset=0 yoffset=2 xadvance=26 page=0 chnl=15
+char id=55 x=198 y=2 width=26 height=32 xoffset=0 yoffset=3 xadvance=26 page=0 chnl=15
+char id=56 x=226 y=2 width=26 height=33 xoffset=0 yoffset=2 xadvance=26 page=0 chnl=15
+char id=57 x=254 y=2 width=26 height=33 xoffset=0 yoffset=2 xadvance=26 page=0 chnl=15
+char id=58 x=282 y=2 width=12 height=21 xoffset=0 yoffset=13 xadvance=12 page=0 chnl=15
+char id=43 x=296 y=2 width=26 height=22 xoffset=0 yoffset=12 xadvance=26 page=0 chnl=15
+char id=45 x=324 y=2 width=19 height=16 xoffset=0 yoffset=18 xadvance=19 page=0 chnl=15
+char id=32 x=345 y=2 width=10 height=0 xoffset=0 yoffset=34 xadvance=10 page=0 chnl=15
+char id=64 x=357 y=2 width=45 height=44 xoffset=0 yoffset=0 xadvance=45 page=0 chnl=15

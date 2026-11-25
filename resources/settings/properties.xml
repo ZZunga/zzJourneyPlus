@@ -1,0 +1,12 @@
+<properties>
+    <property id="appVersion" type="string">1.0.6</property>
+    <property id="mainMode" type="number">0</property>
+    <property id="subMode" type="number">0</property>
+    <property id="etaMode" type="number">0</property>
+    <property id="targetDistance" type="float">0.0</property>
+    <property id="limitSpeed" type="float">15.0</property>
+    <property id="dayHighColor" type="number">1</property>
+    <property id="nightHighColor" type="number">2</property>
+    <!-- 배경색: 0=기기 화면색에 맞춤 1=검정/흰색 그대로(기본) 2=투명(안 칠함) -->
+    <property id="bgMode" type="number">1</property>
+</properties>

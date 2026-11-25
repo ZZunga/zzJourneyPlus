@@ -1,0 +1,38 @@
+<strings>
+    <string id="AppName">zzJourneyPlus</string>
+    <string id="VersionTitle">버전 정보</string>
+    <string id="MainTitle">메인 표시</string>
+    <string id="Main0">주행거리</string>
+    <string id="Main1">다음거리</string>
+    <string id="Main2">남은거리</string>
+    <string id="Main3">현재시각</string>
+    <string id="Main4">경과시간</string>
+    <string id="SubTitle">서브 표시 (위쪽)</string>
+    <string id="Sub0">경과시간</string>
+    <string id="Sub1">구간시간 (Lap)</string>
+    <string id="Sub2">도착예정 (ETA)</string>
+    <string id="Sub3">여유시간 (Buffer)</string>
+    <string id="Sub4">남은거리</string>
+    <string id="Sub5">다음거리</string>
+    <string id="TargetTitle">목표 거리 (km 또는 mi, 0 = 사용 안 함)</string>
+    <string id="LimitTitle">여유시간 기준 제한 속도 (km/h 또는 mph, 0 = 사용 안 함)</string>
+    <string id="DayWarnTitle">주간: 컷오프 초과 색</string>
+    <string id="NightWarnTitle">야간: 컷오프 초과 색</string>
+    <string id="Color0">기본 글자색 (색 없음)</string>
+    <string id="Color1">빨강</string>
+    <string id="Color2">핑크</string>
+    <string id="Color3">자홍</string>
+    <string id="Color4">주황</string>
+    <string id="Color5">노랑</string>
+    <string id="Color6">초록</string>
+    <string id="Color7">파랑</string>
+    <string id="Color8">진한 파랑</string>
+    <string id="Color9">보라</string>
+    <string id="EtaTitle">도착예정 계산 기준</string>
+    <string id="Eta0">휴식 포함 평균 속도</string>
+    <string id="Eta1">이동 평균 속도 (정지 시간 제외)</string>
+    <string id="BgModeTitle">배경색</string>
+    <string id="BgAuto">기기 화면색에 맞춤</string>
+    <string id="BgPlain">검정 / 흰색 그대로</string>
+    <string id="BgClear">투명 (칠하지 않음)</string>
+</strings>

@@ -1,0 +1,78 @@
+[App name]
+zzJourney+ (Remaining, Next point, ETA, Time buffer)
+
+[Short description]
+Remaining distance, ETA and cutoff time buffer for long rides and brevets in one big, readable field.
+
+[Description]
+A data field that shows one main value large (distance, distance to next point, distance remaining, time of day or elapsed time), with distance remaining, distance to next point, elapsed time, lap time, ETA or time buffer on top.
+You can put remaining distance and distance to next point together in one field.
+Built with the TitilliumWeb font for better readability on the move.
+The successor to zzTravel, rebuilt so the numbers keep going even with no course or when you leave the course.
+
+- Find it useful? You can support development here: https://paypal.me/zzungga
+
+- Everything is calculated on the device, no phone needed.
+  Distance to next point and course-based remaining distance need course navigation on the device.
+
+[Main value (km or mi, follows the device setting)]
+- Distance: Total distance of this activity.
+- Distance to next point: With turn-by-turn on, the distance to the next turn. With it off, the distance to the next course point.
+- Distance remaining: Distance left to your final destination.
+- Time of day: 12-hour or 24-hour, following the device setting.
+- Elapsed time: Total activity time including stops.
+- Distances under 100 show one decimal place.
+- In small fields, a small NXT (distance to next point) or REM (remaining) label sits under the unit, so they are not confused with distance ridden.
+- Out of the box it shows distance and elapsed time.
+
+[Top value]
+- Distance remaining (REM): Distance left to your final destination, as a whole number.
+- Distance to next point (NXT): Distance to the next point, as a whole number.
+- Elapsed time (ELP): Total time since the activity started.
+- Lap time (LAP): Time in the current lap.
+- Arrival time (ETA): Arrival time at your destination from your average speed. Choose average including stops (default) or moving average (stops excluded).
+- Time buffer (BUF): Time left before the cutoff, based on the cutoff speed you set.
+  Turns red (pink at night) when you fall behind the cutoff.
+
+[Smart hybrid distance]
+- With a course loaded, Garmin navigation's remaining distance is used first.
+- If you leave the course, it continues from the last remaining distance, minus what you ride after that, so the number never jumps.
+- Brief wobbles at junctions or from GPS drift do not count as leaving the course (more than 50 m for 5 seconds or longer).
+- Riding without a course, it uses your target distance minus the distance ridden.
+- Time buffer counts how far you have actually progressed along the course, so extra distance from a wrong turn does not count as progress.
+
+[Auto layout by field size]
+- Small field: top value above a large main value
+- Wide field: main and top values side by side at the same size
+- Font sizes are set for each screen resolution.
+
+[Settings]
+- Main value (default distance), top value (default elapsed time)
+- ETA based on (average including stops / moving average)
+- Target distance (km or mi, 0 = off)
+- Cutoff speed for time buffer (km/h or mph, default 15, 0 = off)
+- Day and night behind-cutoff color
+
+[Supported devices]
+Edge 540 / 550 / 840 / 850 / 1040 / 1050 / 1060
+
+Change settings in the Garmin Connect IQ app or Garmin Express.
+
+[What's new]
+v1.0.6
+- Background setting added (match device screen / plain black & white / transparent)
+  Addresses the data field background not matching built-in fields on Edge 1050/1060.
+v1.0.5
+- Distance remaining and distance to next point added to the top value, so both distances fit in one field
+- "Next CP" renamed to "next point" (and CP to NXT in small fields): with turn-by-turn on it is the distance to the next turn, so the old name was misleading
+- In wide fields the unit and label moved above the number, leaving room for bigger digits
+- Main number aligned with its unit, right margin tightened in small fields
+- Flag icon and top value sized to match the other zz fields
+v1.0.0
+- First release (successor to zzTravel)
+- Shows distance and elapsed time out of the box (fixes distance showing 0 in the old app)
+- REM and CP labels for remaining distance and next point in small fields
+- Choose the ETA basis (average including stops / moving average)
+- Remaining distance stays steady through GPS drift on course and continues when you leave the course
+- Time buffer against the cutoff from progress along the course, with a warning color when behind
+- Font size adjusts to the field width

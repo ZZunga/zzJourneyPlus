@@ -1,0 +1,13 @@
+<fonts>
+    <font id="C10Main" filename="c10main_34.fnt" antialias="true" filter="0123456789.:- "/>
+    <font id="C10MainDec" filename="c10maindec_20.fnt" antialias="true" filter="0123456789."/>
+    <font id="C10MainT" filename="c10maint_30.fnt" antialias="true" filter="0123456789.:- "/>
+    <font id="C10MainS" filename="c10mains_22.fnt" antialias="true" filter="0123456789.:- "/>
+    <font id="C10Unit" filename="c10unit_8.fnt" antialias="true" filter="kmiAPM"/>
+    <font id="C10Sub" filename="c10sub_17.fnt" antialias="true" filter="0123456789:+- @"/>
+    <font id="C10SubS" filename="c10subs_14.fnt" antialias="true" filter="0123456789:+- @"/>
+    <font id="C10Tag" filename="c10tag_9.fnt" antialias="true" filter="ABCDEFILMNPRSTUX "/>
+    <font id="WideVal" filename="wideval_32.fnt" antialias="true" filter="0123456789.:+- "/>
+    <font id="WideValS" filename="widevals_23.fnt" antialias="true" filter="0123456789.:+- "/>
+    <font id="WideTitle" filename="widetitle_13.fnt" antialias="true" filter="zzJourneyPlus+@"/>
+</fonts>
