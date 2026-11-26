@@ -14,6 +14,7 @@
     <string id="Sub3">여유시간 (Buffer)</string>
     <string id="Sub4">남은거리</string>
     <string id="Sub5">다음거리</string>
+    <string id="Sub6">주행시간 (정지 제외)</string>
     <string id="TargetTitle">목표 거리 (km 또는 mi, 0 = 사용 안 함)</string>
     <string id="LimitTitle">여유시간 기준 제한 속도 (km/h 또는 mph, 0 = 사용 안 함)</string>
     <string id="DayWarnTitle">주간: 컷오프 초과 색</string>

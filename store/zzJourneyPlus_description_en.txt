@@ -5,7 +5,7 @@ zzJourney+ (Remaining, Next point, ETA, Time buffer)
 Remaining distance, ETA and cutoff time buffer for long rides and brevets in one big, readable field.
 
 [Description]
-A data field that shows one main value large (distance, distance to next point, distance remaining, time of day or elapsed time), with distance remaining, distance to next point, elapsed time, lap time, ETA or time buffer on top.
+A data field that shows one main value large (distance, distance to next point, distance remaining, time of day or elapsed time), with distance remaining, distance to next point, elapsed time, lap time, moving time, ETA or time buffer on top.
 You can put remaining distance and distance to next point together in one field.
 Built with the TitilliumWeb font for better readability on the move.
 The successor to zzTravel, rebuilt so the numbers keep going even with no course or when you leave the course.
@@ -28,6 +28,7 @@ The successor to zzTravel, rebuilt so the numbers keep going even with no course
 - Distance to next point (NXT): Distance to the next point, as a whole number.
 - Elapsed time (ELP): Total time since the activity started.
 - Lap time (LAP): Time in the current lap.
+- Moving time (MOV): Riding time with stopped time taken out. Lights and breaks are excluded even without auto pause.
 - Arrival time (ETA): Arrival time at your destination from your average speed. Choose average including stops (default) or moving average (stops excluded).
 - Time buffer (BUF): Time left before the cutoff, based on the cutoff speed you set.
   Turns red (pink at night) when you fall behind the cutoff.
@@ -57,6 +58,8 @@ Edge 540 / 550 / 840 / 850 / 1040 / 1050 / 1060
 Change settings in the Garmin Connect IQ app or Garmin Express.
 
 [What's new]
+v1.0.7
+- Moving time (MOV) added to the top value: riding time with stopped time taken out
 v1.0.6
 - Background setting added (match device screen / plain black & white / transparent)
   Addresses the data field background not matching built-in fields on Edge 1050/1060.

@@ -19,6 +19,7 @@
             <listEntry value="3">@Strings.Sub3</listEntry>
             <listEntry value="4">@Strings.Sub4</listEntry>
             <listEntry value="5">@Strings.Sub5</listEntry>
+            <listEntry value="6">@Strings.Sub6</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.etaMode" title="@Strings.EtaTitle">

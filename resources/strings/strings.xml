@@ -14,6 +14,7 @@
     <string id="Sub3">Time buffer</string>
     <string id="Sub4">Distance remaining</string>
     <string id="Sub5">Distance to next point</string>
+    <string id="Sub6">Moving time (stops excluded)</string>
     <string id="TargetTitle">Target distance (km or mi, 0 = off)</string>
     <string id="LimitTitle">Cutoff speed for time buffer (km/h or mph, 0 = off)</string>
     <string id="DayWarnTitle">Day: behind cutoff color</string>

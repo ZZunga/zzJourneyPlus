@@ -9,7 +9,7 @@ typedef Font as WatchUi.FontResource or Graphics.FontDefinition;
 
 // zzJourneyPlus (zzTravel 후속, 이름 변경) - 장거리 라이딩 / 란도너링용
 //  - 메인: 주행거리 / 다음 CP 거리 / 남은거리 / 현재시각 / 경과시간
-//  - 서브(위쪽 줄): 경과시간 / 구간(Lap)시간 / 도착예정(ETA) / 여유시간(Buffer)
+//  - 서브(위쪽 줄): 경과시간 / 구간(Lap)시간 / 도착예정(ETA) / 여유시간(Buffer) / 주행시간(Moving)
 //  - 남은거리: 코스 안내 중이면 기기 내비 값, 코스 없음 또는 경로 이탈이면 설정한 목표 거리 기준
 //    (목표 거리가 0이고 경로 이탈이면 마지막 코스 값에서 그 뒤 달린 거리를 빼서 이어감)
 //  - 여유시간: (진행 거리 / 제한 속도) - 경과시간. 음수면 경고색
@@ -18,12 +18,13 @@ typedef Font as WatchUi.FontResource or Graphics.FontDefinition;
 class zzJourneyPlusView extends WatchUi.DataField {
 
     enum { M_DIST, M_NEXT, M_REMAIN, M_CLOCK, M_ELAPSED }
-    enum { S_ELAPSED, S_LAP, S_ETA, S_BUFFER, S_REMAIN, S_NEXT }
+    // 배포 후 순서 변경 금지. 새 항목은 뒤에만 추가
+    enum { S_ELAPSED, S_LAP, S_ETA, S_BUFFER, S_REMAIN, S_NEXT, S_MOVE }
     // 배경색: 0 기기 화면색에 맞춤 / 1 검정·흰색 그대로 / 2 투명
     enum { BG_AUTO, BG_PLAIN, BG_CLEAR }
     // 다음거리(NXT) = info.distanceToNextPoint.
     //  기기에서 턴바이턴 안내가 켜져 있으면 다음 턴까지, 꺼져 있으면 다음 코스 포인트까지의 거리다.
-    private const SUB_TAGS    = ["ELP", "LAP", "ETA", "BUF", "REM", "NXT"];
+    private const SUB_TAGS    = ["ELP", "LAP", "ETA", "BUF", "REM", "NXT", "MOV"];
     // 메인 값 옆 작은 글씨 (단위 아래). 넓은 칸에서도 같은 글씨로 두 값을 구분
     private const MAIN_TAGS   = ["DST", "NXT", "REM", "TIME", "ELP"];
     // 색상표 (다른 zz 앱과 같은 인덱스, 배포 후 순서 변경 금지). 0 = 기본 글자색
@@ -49,6 +50,10 @@ class zzJourneyPlusView extends WatchUi.DataField {
     private var _lastRem as Float = -1.0f, _lastRemAt as Float = 0.0f;   // 마지막 코스 남은거리와 그때 주행거리
     private var _offSec as Number = 0;            // 경로 이탈 판정 연속 초 (GPS 흔들림으로 들락날락하지 않게)
     private var _onCourse as Boolean = false;     // 지금 남은거리가 코스 값인지
+    // 주행시간: 타이머가 돈 시간 중 속도가 기준 이상인 구간만 더한다 (자동 일시정지를 안 써도 신호 대기는 빠짐)
+    private var _moveMs as Number = 0;            // 이동시간 누적 (ms)
+    private var _lastTimer as Number = -1;        // 직전 timerTime (ms), -1 = 아직 없음
+    private const MOVE_MPS = 0.8f;                // 약 2.9 km/h. 이 속도 넘으면 이동으로 본다
     private const OFF_M = 50.0f;                  // 이 거리 넘게 벗어나야 이탈 후보
     private const OFF_SEC = 5;                    // 이탈 후보가 이만큼 이어져야 이탈로 판정
     private var _warn as Boolean = false;
@@ -102,8 +107,8 @@ class zzJourneyPlusView extends WatchUi.DataField {
         _unit = _metric ? "km" : "mi";
         // 기본값: 처음 설치해도 바로 의미 있는 값이 나오도록 주행거리 + 경과시간
         _main = numProp("mainMode", M_DIST, 4);
-        _sub  = numProp("subMode", S_ELAPSED, 5);
-        _subDist = (_sub >= S_REMAIN);        // 서브가 거리면 단위(km/mi)를 단위 폰트로 그린다
+        _sub  = numProp("subMode", S_ELAPSED, 6);
+        _subDist = (_sub == S_REMAIN || _sub == S_NEXT);   // 서브가 거리면 단위(km/mi)를 단위 폰트로 그린다
         _etaMoving = (numProp("etaMode", 0, 1) == 1);
         _mainTag = MAIN_TAGS[_main] as String;
         var perUnit = _metric ? 1000.0f : 1609.344f;
@@ -166,7 +171,7 @@ class zzJourneyPlusView extends WatchUi.DataField {
         _fTag     = loadFont(Rez.Fonts.C10Tag);
         _iconW = dc.getTextWidthInPixels("@", _fSub);
         _yIconSub = iconTop(_fSub);
-        _tagW  = maxW(dc, ["ELP", "LAP", "ETA", "BUF", "REM", "NXT", "AM", "PM"], _fTag) + _ug;
+        _tagW  = maxW(dc, ["ELP", "LAP", "ETA", "BUF", "REM", "NXT", "MOV", "AM", "PM"], _fTag) + _ug;
         _unitW = maxW(dc, ["km", "mi", "AM", "PM"], _fUnit);
         var tw = maxW(dc, ["REM", "NXT"], _fTag);
         _unitW = ((tw > _unitW) ? tw : _unitW) + _ug;
@@ -241,6 +246,7 @@ class zzJourneyPlusView extends WatchUi.DataField {
 
     function onTimerReset() as Void {
         _lapStart = 0; _courseTotal = 0.0f; _lastRem = -1.0f; _lastRemAt = 0.0f; _offSec = 0; _onCourse = false;
+        _moveMs = 0; _lastTimer = -1;
     }
 
     function compute(info as Activity.Info) as Void {
@@ -249,6 +255,7 @@ class zzJourneyPlusView extends WatchUi.DataField {
         var ev = info.elapsedTime;
         var elapsed = (ev != null) ? ev : 0;
         var rem = remaining(info, dist);
+        addMoving(info);
 
         // ---- 메인 ----
         if (_main == M_CLOCK) {
@@ -272,6 +279,8 @@ class zzJourneyPlusView extends WatchUi.DataField {
             var tv = info.timerTime;
             var t = (tv != null) ? tv : 0;
             key = (t > _lapStart) ? (t - _lapStart) / 60000 : 0;
+        } else if (_sub == S_MOVE) {
+            key = _moveMs / 60000;
         } else if (_sub == S_ETA) {
             // 평균 속도: 기본은 휴식 포함(주행거리 / 경과시간), 설정에서 이동 평균(정지 제외)
             var spd = 0.0f;
@@ -330,6 +339,18 @@ class zzJourneyPlusView extends WatchUi.DataField {
             }
             _subDirty = true;
         }
+    }
+
+    // 주행시간 누적: 타이머가 돈 시간만 보고, 그중 속도가 기준 이상인 구간만 더한다
+    //  일시정지 중에는 timerTime 이 멈추고, 타이머가 돌아도 신호 대기처럼 멈춘 시간은 빠진다
+    private function addMoving(info as Activity.Info) as Void {
+        var tv = info.timerTime;
+        var t = (tv != null) ? tv : 0;
+        if (_lastTimer >= 0 && t > _lastTimer) {
+            var sv = info.currentSpeed;
+            if (sv != null && sv > MOVE_MPS) { _moveMs += t - _lastTimer; }
+        }
+        _lastTimer = t;
     }
 
     // 남은거리 (m)
