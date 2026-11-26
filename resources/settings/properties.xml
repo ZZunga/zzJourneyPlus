@@ -1,5 +1,5 @@
 <properties>
-    <property id="appVersion" type="string">1.0.6</property>
+    <property id="appVersion" type="string">1.0.7</property>
     <property id="mainMode" type="number">0</property>
     <property id="subMode" type="number">0</property>
     <property id="etaMode" type="number">0</property>

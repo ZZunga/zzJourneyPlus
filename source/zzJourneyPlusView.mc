@@ -14,7 +14,7 @@ typedef Font as WatchUi.FontResource or Graphics.FontDefinition;
 //    (목표 거리가 0이고 경로 이탈이면 마지막 코스 값에서 그 뒤 달린 거리를 빼서 이어감)
 //  - 여유시간: (진행 거리 / 제한 속도) - 경과시간. 음수면 경고색
 // 배터리: 문자열은 값(분 단위, 0.1km 단위)이 바뀔 때만 만들고, 폰트 폭 확인도 그때만 함
-// APP_VERSION 1.0.6
+// APP_VERSION 1.0.7
 class zzJourneyPlusView extends WatchUi.DataField {
 
     enum { M_DIST, M_NEXT, M_REMAIN, M_CLOCK, M_ELAPSED }
@@ -62,6 +62,8 @@ class zzJourneyPlusView extends WatchUi.DataField {
 
     // ---- 레이아웃 ----
     private var _wide as Boolean = false, _titleOn as Boolean = true;
+    // 1050 / 1060 (화면폭 480 이상). onUpdate 에서 매번 묻지 않는다
+    private var _big as Boolean = false;
     private var _L as Number = 0, _T as Number = 0, _R as Number = 0, _B as Number = 0, _ug as Number = 2;
     // 10필드 칸
     private var _fMain as Font = Graphics.FONT_XTINY, _fMainDec as Font = Graphics.FONT_XTINY;
@@ -89,7 +91,7 @@ class zzJourneyPlusView extends WatchUi.DataField {
     function initialize() {
         DataField.initialize();
         // 업데이트 후에도 설정 화면에 현재 버전이 보이도록 덮어씀
-        Application.Properties.setValue("appVersion", "1.0.6");
+        Application.Properties.setValue("appVersion", "1.0.7");
         readSettings();
     }
 
@@ -132,7 +134,9 @@ class zzJourneyPlusView extends WatchUi.DataField {
     // =========================================================
     function onLayout(dc as Graphics.Dc) as Void {
         var w = dc.getWidth(), h = dc.getHeight();
-        _wide = w > System.getDeviceSettings().screenWidth * 0.75f;
+        var sw = System.getDeviceSettings().screenWidth;
+        _wide = w > sw * 0.75f;
+        _big = (sw >= 480);
         _L = (w * 0.05f + 0.5f).toNumber();
         _T = (h * 0.05f + 0.5f).toNumber();
         _R = w - _L;
@@ -402,8 +406,7 @@ class zzJourneyPlusView extends WatchUi.DataField {
         var sys = getBackgroundColor();
         var sysClear = (sys == Graphics.COLOR_TRANSPARENT);   // 기기가 "투명"이라고 알려준 경우
         var night = (sys == Graphics.COLOR_BLACK || sysClear);
-        var soft = (_bgMode == BG_AUTO)
-                && (System.getDeviceSettings().screenWidth >= 480);   // 1050 / 1060
+        var soft = (_bgMode == BG_AUTO) && _big;   // _big = 1050 / 1060
         var fg = night ? Graphics.COLOR_WHITE
                        : (soft ? 0x313152 : Graphics.COLOR_BLACK);
         var bg = night ? (soft ? 0x17181D : Graphics.COLOR_BLACK)
