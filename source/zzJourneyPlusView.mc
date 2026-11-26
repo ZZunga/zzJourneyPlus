@@ -41,7 +41,7 @@ class zzJourneyPlusView extends WatchUi.DataField {
     private var _limitMps as Float = 0.0f;       // 제한 속도 (m/s), 0 = 여유시간 계산 안 함
     private var _dayWarn as Number = 0xFF0000, _nightWarn as Number = 0xFF55AA;
     private var _mainTag as String = "";         // 10필드 칸에서 단위 아래 작은 글씨 (주행거리와 구분)
-    private var _bgMode as Number = BG_PLAIN;    // 배경색
+    private var _bgMode as Number = BG_AUTO;    // 배경색
 
     // ---- 상태 ----
     private var _lapStart as Number = 0;          // Lap 시작 timerTime (ms)
@@ -111,7 +111,7 @@ class zzJourneyPlusView extends WatchUi.DataField {
         _limitMps = floatProp("limitSpeed") * perUnit / 3600.0f;
         _dayWarn   = COLORS[numProp("dayHighColor", 1, 9)] as Number;
         _nightWarn = COLORS[numProp("nightHighColor", 2, 9)] as Number;
-        _bgMode = numProp("bgMode", BG_PLAIN, 2);
+        _bgMode = numProp("bgMode", BG_AUTO, 2);
         _mainKey = -9; _subKey = -9;
     }
 
